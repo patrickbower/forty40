@@ -30,13 +30,13 @@ export default class CheckItemComponent extends React.Component<Props, State> {
     return (
       <div className="flex items-center mb2">
         <label htmlFor={hyphenatedName} className="lh-copy">
-          <input 
-            className="mr2 dn" 
+          <input
+            className="mr2 dn checkbox" 
             type="checkbox" 
             id={hyphenatedName}
             defaultValue={hyphenatedName} 
           />
-          <div className="h2 w2 bg-black-05 ph2 dib mr4 br-100 circlecheck" />
+          <div className="dib mr4 br-100 checkcircle" />
           {this.props.name}
         </label>
       </div>

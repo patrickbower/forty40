@@ -2,6 +2,39 @@
   margin-left: -60px;
 }
 
-.circlecheck {
-  background: #fecb00;
+.checkcircle {
+  background-color: #FFF;
+  width: 2rem;
+  height: 2rem;
+  border: 0.5rem solid #ccc;
+  position: relative;
+  top:10px;
+  transition: all .3s .1s ease;
+}
+
+.checkbox:checked ~ .checkcircle {
+  background-color: #19A974;
+  border: none;
+}
+
+.checkbox:checked ~ .checkcircle:before {
+  content: '';
+  position: absolute;
+  top: 14px;
+  left: 8px;
+  width: 20px;
+  height: 4px;
+  background-color: #ccc;
+  transform: rotate(-45deg);
+}
+
+.checkbox:checked ~ .checkcircle:after {
+  content: '';
+  position: absolute;
+  top: 16px;
+  left: 5px;
+  width: 7px;
+  height: 4px;
+  background-color: #ccc;
+  transform: rotate(45deg);
 }
