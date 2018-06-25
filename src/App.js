@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './index.css';
-import './Grid.css';
 
-import CheckItemComponent from './CheckItemComponent';
+import CheckItemComponent from './components/CheckItemComponent';
 
 class App extends Component {
 
   createCheckItems() {
-    const Data = require('./data.json');
+    const Data = require('./data/data.json');
     return Data.list.map(item => {
       return <CheckItemComponent name={item} key={item} />
     })

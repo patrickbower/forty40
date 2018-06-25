@@ -1,1 +1,11 @@
 @import "tachyons";
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 40% 60%;
+}
+
+.grid-container > div {
+  padding-left: 10px;
+  padding-right: 10px;
+}
