@@ -1,16 +1,18 @@
-import * as React from 'react';
-import CheckItemComponent from './CheckItemComponent';
+import React, { Component } from 'react';
+import './index.css';
 
-class App extends React.Component {
+import CheckItemComponent from './components/CheckItemComponent';
 
-  public createCheckItems() {
-    const Data = require('./data.json');
-    return Data.list.map((item:string) => {
+class App extends Component {
+
+  createCheckItems() {
+    const Data = require('./data/data.json');
+    return Data.list.map(item => {
       return <CheckItemComponent name={item} key={item} />
     })
   }
 
-  public render() {
+  render() {
     return (
       <div className="App sans-serif black-70 grid-container">
         <div className="pt5 bg-moon-gray">
