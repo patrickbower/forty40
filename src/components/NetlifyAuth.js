@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import netlifyIdentity from 'netlify-identity-widget';
+import login from '../css/login.css';
 
 class NetlifyAuth extends React.Component {
   constructor(props) {
@@ -35,11 +36,11 @@ class NetlifyAuth extends React.Component {
     console.log(user, this.state)
     if (!user) {
       return (
-        <a href="#" onClick={ this.handleLogInClick }>Log in</a>
+        <a className="login-link f6 grow no-underline br-pill ph3 pv2 mb2 dib black bg-light-gray" href="#" onClick={ this.handleLogInClick }>Log in</a>
       );
     }
     return (
-      <a href="#" onClick={ this.handleLogOutClick }>Log out { user.email }</a>
+      <a className="login-link f6 grow no-underline br-pill ph3 pv2 mb2 dib black bg-light-gray" href="#" onClick={ this.handleLogOutClick }>Log out { user.email }</a>
     );
   }
 }
