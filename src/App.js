@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import './index.css';
+
+import NetlifyAuth from './components/NetlifyAuth';
 import CheckItemComponent from './components/CheckItemComponent';
-import netlifyIdentity from "netlify-identity-widget";
+
 
 class App extends Component {
 
@@ -10,26 +12,6 @@ class App extends Component {
     return Data.list.map(item => {
       return <CheckItemComponent name={item} key={item} />
     })
-  }
-
-  componentDidMount(){
-    console.log(typeof netlifyIdentity);
-    netlifyIdentity.open();
-
-    // Get the current user:
-    const user = netlifyIdentity.currentUser();
-    console.log(window.netlifyIdentity.currentUser());
-    setTimeout(() => {
-      console.log(window.netlifyIdentity.currentUser());
-    }, 2000);
-
-    // Bind to events
-    netlifyIdentity.on("init", user => console.log(user));
-    netlifyIdentity.on("login", user => console.log(user));
-    netlifyIdentity.on("logout", () => console.log("Logged out"));
-    netlifyIdentity.on("error", err => console.error("Logged out"));
-    netlifyIdentity.on("open", () => console.log("Widget opened"));
-    netlifyIdentity.on("close", () => console.log("Widget closed"));
   }
 
   render() {
@@ -43,6 +25,7 @@ class App extends Component {
           <p className="f3 w-60 lh-copy mt0 mb4 mb5-ns">
             Take care of the minutes, and the days will take care of themselves
           </p>
+          <NetlifyAuth />
           <form>
             <fieldset className="bn pa0 checklist">
               {this.createCheckItems()}
