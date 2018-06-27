@@ -4,10 +4,6 @@ import '../css/checkitem.css';
 
 export default class CheckItemComponent extends React.Component {
 
-  constructor (props){
-    super(props);
-  }
-
   // hyphenate = (e: React.FormEvent<HTMLInputElement>) => {  
   hyphenate() {
     return this.props.name.replace(/\s+/g, '-').toLowerCase();
