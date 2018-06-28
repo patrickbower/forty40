@@ -3,3 +3,16 @@
     top: 10px;
     right: 10px;
 }
+
+.logged-out {
+    width: 100vw;
+    height: 100vh;
+    background-color: #ccc;
+}
+
+.logged-out .login-link {
+    top: 50%;
+    right: initial;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

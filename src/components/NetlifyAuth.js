@@ -10,7 +10,6 @@ class NetlifyAuth extends React.Component {
 
     this.handleLogInClick = this.handleLogInClick.bind(this);
     this.handleLogOutClick = this.handleLogOutClick.bind(this);
-    this.state = { loggedIn: false };
   }
 
   handleLogInClick() {
@@ -23,24 +22,37 @@ class NetlifyAuth extends React.Component {
 
   afterLogIn() {
     netlifyIdentity.close();
-    this.setState({ loggedIn: true });
+    this.props.login(true);
+  }
+
+  afterLogOut() {
+    this.props.login(false);
   }
 
   componentDidMount() {
     netlifyIdentity.on("login", () => this.afterLogIn());
-    netlifyIdentity.on("logout", () => this.setState({ loggedIn: false }));
+    netlifyIdentity.on("logout", () => this.afterLogOut());
   }
 
   render() {
     const user = netlifyIdentity.currentUser();
-    console.log(user, this.state)
     if (!user) {
       return (
-        <a className="login-link f6 grow no-underline br-pill ph3 pv2 mb2 dib black bg-light-gray" href="#" onClick={ this.handleLogInClick }>Log in</a>
+        <a 
+          className="login-link f6 grow no-underline br-pill ph3 pv2 mb2 dib black bg-light-gray"
+          href="#"
+          onClick={ this.handleLogInClick }>
+            Log in
+        </a>
       );
     }
     return (
-      <a className="login-link f6 grow no-underline br-pill ph3 pv2 mb2 dib black bg-light-gray" href="#" onClick={ this.handleLogOutClick }>Log out { user.email }</a>
+      <a 
+        className="login-link f6 grow no-underline br-pill ph3 pv2 mb2 dib black bg-light-gray"
+        href="#"
+        onClick={ this.handleLogOutClick }>
+          Log out {user.user_metadata.full_name}
+      </a>
     );
   }
 }
