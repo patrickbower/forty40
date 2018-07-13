@@ -1,8 +1,7 @@
 // src/Components/NetlifyAuth.js
 
-import * as React from 'react';
 import netlifyIdentity from 'netlify-identity-widget';
-import login from '../css/login.css';
+import * as React from 'react';
 
 class NetlifyAuth extends React.Component {
   constructor(props) {
@@ -24,23 +23,39 @@ class NetlifyAuth extends React.Component {
   afterLogIn() {
     netlifyIdentity.close();
     this.setState({ loggedIn: true });
+    this.props.login(true);
+  }
+
+  afterLogOut() {
+    this.setState({ loggedIn: false })
+    this.props.login(false);
   }
 
   componentDidMount() {
     netlifyIdentity.on("login", () => this.afterLogIn());
-    netlifyIdentity.on("logout", () => this.setState({ loggedIn: false }));
+    netlifyIdentity.on("logout", () => this.afterLogOut());
+    netlifyIdentity.currentUser()? this.props.login(true) : this.props.login(false);
   }
 
   render() {
     const user = netlifyIdentity.currentUser();
-    console.log(user, this.state)
     if (!user) {
       return (
-        <a className="login-link f6 grow no-underline br-pill ph3 pv2 mb2 dib black bg-light-gray" href="#" onClick={ this.handleLogInClick }>Log in</a>
+        <a 
+          className="login-link f6 grow no-underline br-pill ph3 pv2 mb2 dib black bg-light-gray"
+          href="#"
+          onClick={ this.handleLogInClick }>
+            Log in
+        </a>
       );
     }
     return (
-      <a className="login-link f6 grow no-underline br-pill ph3 pv2 mb2 dib black bg-light-gray" href="#" onClick={ this.handleLogOutClick }>Log out { user.email }</a>
+      <a 
+        className="login-link f6 grow no-underline br-pill ph3 pv2 mb2 dib black bg-light-gray"
+        href="#"
+        onClick={ this.handleLogOutClick }>
+          Log out {user.user_metadata.full_name}
+      </a>
     );
   }
 }
