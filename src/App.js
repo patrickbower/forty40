@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './index.css';
+import './css/login.css';
 
 import NetlifyAuth from './components/NetlifyAuth';
 import CheckItemComponent from './components/CheckItemComponent';

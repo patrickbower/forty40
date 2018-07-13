@@ -1,8 +1,7 @@
 // src/Components/NetlifyAuth.js
 
-import * as React from 'react';
 import netlifyIdentity from 'netlify-identity-widget';
-import login from '../css/login.css';
+import * as React from 'react';
 
 class NetlifyAuth extends React.Component {
   constructor(props) {
@@ -10,6 +9,7 @@ class NetlifyAuth extends React.Component {
 
     this.handleLogInClick = this.handleLogInClick.bind(this);
     this.handleLogOutClick = this.handleLogOutClick.bind(this);
+    this.state = { loggedIn: false };
   }
 
   handleLogInClick() {
@@ -22,16 +22,19 @@ class NetlifyAuth extends React.Component {
 
   afterLogIn() {
     netlifyIdentity.close();
+    this.setState({ loggedIn: true });
     this.props.login(true);
   }
 
   afterLogOut() {
+    this.setState({ loggedIn: false })
     this.props.login(false);
   }
 
   componentDidMount() {
     netlifyIdentity.on("login", () => this.afterLogIn());
     netlifyIdentity.on("logout", () => this.afterLogOut());
+    netlifyIdentity.currentUser()? this.props.login(true) : this.props.login(false);
   }
 
   render() {
