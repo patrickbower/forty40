@@ -1,11 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
+import $ from 'jquery';
+import netlifyIdentity from 'netlify-identity-widget';
+import './index.css';
+
+// jquery
+window.jQuery = window.$ = $;
 
 // netlifyIdentity
-import netlifyIdentity from 'netlify-identity-widget';
 window.netlifyIdentity = netlifyIdentity;
 netlifyIdentity.init();
 

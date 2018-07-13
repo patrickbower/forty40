@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 import './index.css';
 import './css/login.css';
 
-import NetlifyAuth from './components/NetlifyAuth';
+import TrelloAuth from './components/TrelloAuth';
 import CheckItemComponent from './components/CheckItemComponent';
+
+import Ajax from "./utils/ajax";
+import * as Trello from "./utils/trello";
 
 
 class App extends Component {
@@ -12,19 +15,56 @@ class App extends Component {
     super(props);
 
     this.state = ({
-      userLoggedIn: false
+      userLoggedIn: false,
+      data: {}
     })
+
+    this.getData = this.getData.bind(this);
+  }
+
+  componentDidMount(){
+    const token = window.localStorage.trello_token;
+    if (token) {
+      this.getData();
+    }
+  }
+
+  async getData() {
+    try {
+      let member = await Ajax(Trello.query(Trello.member()));
+      let boardData = await Ajax(Trello.query(Trello.boards(member.id)));
+      const board = boardData.find(board => board.name = Trello.boardName)
+      let cards = await Ajax(Trello.query(Trello.cards(board.id)));
+      this.handleLoad(true, cards);
+    } catch (err) {
+      console.error(err)
+    }
   }
 
   createCheckItems() {
-    const Data = require('./data/data.json');
-    return Data.list.map(item => {
-      return <CheckItemComponent name={item} key={item} />
+    const {data} = this.state;
+    return data.map(item => {
+      return <CheckItemComponent name={item.name} key={item.id} />
     })
   }
 
-  login(currentState){
-    this.setState({userLoggedIn: currentState});
+  handleLogin(currentState) {
+    this.setState({
+      userLoggedIn: currentState
+    });
+  }
+
+  handleData(dataSet) {
+    this.setState({
+      data: dataSet
+    });
+  }
+
+  handleLoad(currentState, dataSet) {
+    this.setState({
+      userLoggedIn: currentState,
+      data: dataSet
+    });
   }
 
   renderList(){
@@ -49,10 +89,16 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.state)
     return (
       <div className = {"App sans-serif " + (this.state.userLoggedIn ? "logged-in" : "logged-out")}>
-        <NetlifyAuth login={(currentState) => this.login(currentState)} />
-        {this.state.userLoggedIn? this.renderList() : ''}
+        {this.state.userLoggedIn ? 
+          this.renderList() 
+          : 
+          <TrelloAuth 
+            load = {(currentState, dataSet) => this.handleLoad(currentState, dataSet)}
+          />
+        }
       </div>
     );
   }
