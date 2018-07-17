@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
+import $ from 'jquery';
+import './index.css';
 
-// netlifyIdentity
-import netlifyIdentity from 'netlify-identity-widget';
-window.netlifyIdentity = netlifyIdentity;
-netlifyIdentity.init();
+// jquery
+window.jQuery = window.$ = $;
+let url = 'https://api.trello.com/1/client.js?key=bb6807f13b020310a0543a81ebf10765';
+$.getScript(url,() => {}).then(() => {
+  ReactDOM.render(<App />, document.getElementById('root'));
+  registerServiceWorker();
+});
 
-ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();

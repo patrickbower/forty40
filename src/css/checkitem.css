@@ -12,12 +12,14 @@
   transition: all .3s .1s ease;
 }
 
-.checkbox:checked ~ .checkcircle {
+/* .checkbox:checked ~ .checkcircle, */
+.checkbox.checked ~ .checkcircle {
   background-color: #19A974;
   border: none;
 }
 
-.checkbox:checked ~ .checkcircle:before {
+/* .checkbox:checked ~ .checkcircle:before, */
+.checkbox.checked ~ .checkcircle:before {
   content: '';
   position: absolute;
   top: 14px;
@@ -28,7 +30,8 @@
   transform: rotate(-45deg);
 }
 
-.checkbox:checked ~ .checkcircle:after {
+/* .checkbox:checked ~ .checkcircle:after, */
+.checkbox.checked ~ .checkcircle:after {
   content: '';
   position: absolute;
   top: 16px;
