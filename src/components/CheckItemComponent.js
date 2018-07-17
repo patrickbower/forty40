@@ -20,10 +20,12 @@ export default class CheckItemComponent extends React.Component {
             id={hyphenatedName}
             defaultValue={hyphenatedName}
           />
-          <div className="dib mr4 br-100 checkcircle" />
-          <a href={this.props.link} className="no-underline dark-gray" target="_blank">
-            {this.props.name}
-          </a>
+          <div className="dib br-100 checkcircle" />
+          <div className="item">
+            <a href={this.props.link} className="no-underline dark-gray" target="_blank">
+              {this.props.name}
+            </a>
+          </div>
         </label>
       </div>
     )

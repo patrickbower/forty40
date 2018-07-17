@@ -1,5 +1,6 @@
 .checklist {
   margin-left: -60px;
+  /* margin-left: -46px; */
 }
 
 .checkcircle {
@@ -8,6 +9,7 @@
   height: 2rem;
   border: 0.5rem solid #ccc;
   position: relative;
+  display: inline-block;
   top:10px;
   transition: all .3s .1s ease;
 }
@@ -41,3 +43,12 @@
   background-color: #ccc;
   transform: rotate(45deg);
 }
+
+.item {
+  margin: -25px 0 0 72px;
+}
+@media only screen and (max-width : 450px) {
+  .item {
+    margin: -25px 0 0 60px;
+  }
+} 
