@@ -12,8 +12,8 @@ export function member() {
   return `members/patrickbower`;
 }
 
-export function boards(id) {
-  return `members/${id}/boards`;
+export function boards() {
+  return `members/me/boards`;
 }
 
 export function cards(id) {

@@ -15,13 +15,15 @@ export default class CheckItemComponent extends React.Component {
       <div className="flex items-center mb2">
         <label htmlFor={hyphenatedName} className="lh-copy">
           <input
-            className="mr2 dn checkbox" 
+            className={"mr2 dn checkbox " + (this.props.done ? "checked" : "")}
             type="checkbox" 
             id={hyphenatedName}
-            defaultValue={hyphenatedName} 
+            defaultValue={hyphenatedName}
           />
           <div className="dib mr4 br-100 checkcircle" />
-          {this.props.name}
+          <a href={this.props.link} className="no-underline dark-gray" target="_blank">
+            {this.props.name}
+          </a>
         </label>
       </div>
     )

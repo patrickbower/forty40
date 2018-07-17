@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Ajax from "../utils/ajax";
 import * as Trello from "../utils/trello";
 
 class TrelloAuth extends React.Component {
@@ -26,18 +25,15 @@ class TrelloAuth extends React.Component {
 
   async authenticationSuccess() {
     try {
-      let boardData = await window.Trello.get(Trello.boards('me'));
+      let boardData = await window.Trello.get(Trello.boards());
       const board = boardData.find(board => board.name = Trello.boardName)
+      window.localStorage.board_id = board.id;
       let cardsData = await window.Trello.get(Trello.cards(board.id));
       this.returnData(cardsData);
     } catch(err) {
       console.error(err)
     }
   }
-
-
-  
-
 
   authenticationFailure() {
     console.error('Authentication failure')
