@@ -62,7 +62,7 @@ class App extends Component {
         <div className="pt5 pb5">
           <h1 className="f-headline b lh-solid mt0 mb3">Forty</h1>
           <p className="f3 w-60 lh-copy mt0 mb4 mb5-ns">
-            Take care of the minutes, and the days will take care of themselves
+            Don't read about it, be about it
           </p>
           <form>
             <fieldset className="bn pa0 checklist">
