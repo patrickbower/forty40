@@ -2,6 +2,7 @@ let key = `bb6807f13b020310a0543a81ebf10765`;
 let token = window.localStorage.trello_token;
 
 export let boardName = 'Forty40';
+export let boardNameId = '5b45ea4aecc023a9fbb7ee01';
 
 export let base = {
   domain: `https://api.trello.com/1/`,

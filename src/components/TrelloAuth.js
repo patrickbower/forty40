@@ -26,7 +26,7 @@ class TrelloAuth extends React.Component {
   async authenticationSuccess() {
     try {
       let boardData = await window.Trello.get(Trello.boards());
-      const board = boardData.find(board => board.name = Trello.boardName)
+      const board = boardData.find(board => board.id = Trello.boardNameId)
       window.localStorage.board_id = board.id;
       let cardsData = await window.Trello.get(Trello.cards(board.id));
       this.returnData(cardsData);
