@@ -45,12 +45,11 @@ class TrelloAuth extends React.Component {
 
   render() {
     return (
-      <a 
+      <button type="button" 
         className="login-link f6 no-underline br-pill ph3 pv2 mb2 dib black bg-light-gray"
-        href="#"
         onClick={ this.handleLogInClick }>
           Log in
-      </a>
+      </button>
     );
   }
 }

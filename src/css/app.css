@@ -2,10 +2,14 @@
 
 .grid-container {
   display: grid;
-  grid-template-columns: 40% 60%;
+  grid-template-columns: 35% 65%;
 }
 
 .grid-container > div {
   padding-left: 10px;
   padding-right: 10px;
+}
+
+.done {
+  color: #0000ee !important;
 }

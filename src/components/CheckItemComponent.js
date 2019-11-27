@@ -1,33 +1,34 @@
 import * as React from "react";
-import '../css/checkitem.css';
-
 
 export default class CheckItemComponent extends React.Component {
-
-  // hyphenate = (e: React.FormEvent<HTMLInputElement>) => {  
-  hyphenate() {
-    return this.props.name.replace(/\s+/g, '-').toLowerCase();
-  }
-
   render() {
-    const hyphenatedName = this.hyphenate();
     return (
-      <div className="flex items-center mb2">
-        <label htmlFor={hyphenatedName} className="lh-copy">
-          <input
-            className={"mr2 dn checkbox " + (this.props.done ? "checked" : "")}
-            type="checkbox" 
-            id={hyphenatedName}
-            defaultValue={hyphenatedName}
-          />
-          <div className="dib br-100 checkcircle" />
-          <div className="item">
-            <a href={this.props.link} className="no-underline dark-gray" target="_blank">
+      <div className="grid-container">
+        <div className="bg-black">
+          <p className="f2 b white ma0 pt2 tr">{this.props.number + 1}</p>
+        </div>
+        <div>
+          <p
+            className={
+              this.props.done
+                ? "f2 b black ma0 pt2 strike"
+                : "f2 b black ma0 pt2"
+            }
+          >
+            <a
+              href={this.props.link}
+              className={
+                this.props.done
+                  ? "no-underline ma0 pt2 done"
+                  : "no-underline ma0 pt2 black"
+              }
+              target="_blank"
+            >
               {this.props.name}
             </a>
-          </div>
-        </label>
+          </p>
+        </div>
       </div>
-    )
+    );
   }
 }

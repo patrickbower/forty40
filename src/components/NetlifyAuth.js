@@ -41,21 +41,19 @@ class NetlifyAuth extends React.Component {
     const user = netlifyIdentity.currentUser();
     if (!user) {
       return (
-        <a 
+        <button type="button"
           className="login-link f6 grow no-underline br-pill ph3 pv2 mb2 dib black bg-light-gray"
-          href="#"
           onClick={ this.handleLogInClick }>
             Log in
-        </a>
+        </button>
       );
     }
     return (
-      <a 
+      <button type="button" 
         className="login-link f6 grow no-underline br-pill ph3 pv2 mb2 dib black bg-light-gray"
-        href="#"
         onClick={ this.handleLogOutClick }>
           Log out {user.user_metadata.full_name}
-      </a>
+      </button>
     );
   }
 }

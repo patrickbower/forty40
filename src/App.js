@@ -40,7 +40,7 @@ class App extends Component {
 
   createCheckItems() {
     const { data } = this.state;
-    return data.map(item => {
+    return data.map((item, index) => {
       const done =
         item.labels.length && item.labels[0].name === "done" ? true : false;
       return (
@@ -49,6 +49,7 @@ class App extends Component {
           key={item.id}
           done={done}
           link={item.url}
+          number={index}
         />
       );
     });
@@ -63,22 +64,28 @@ class App extends Component {
 
   renderList() {
     return (
-      <div className="black-70 grid-container">
-        <div className="pt5 bg-moon-gray">
-          <h1 className="f-headline b lh-solid mt0 tr white">40</h1>
+      <React.Fragment>
+        <div className="grid-container">
+          <div className="pt5 bg-black">
+            <h1 className="f-headline b lh-solid mt0 tr white">40</h1>
+          </div>
+          <div className="pt5 pb5">
+            <h1 className="f-headline b lh-solid mt0 mb3 black">Forty</h1>
+            <p className="f2 b black">
+              You miss 100% of the shots you don’t take
+            </p>
+          </div>
         </div>
-        <div className="pt5 pb5">
-          <h1 className="f-headline b lh-solid mt0 mb3">Forty</h1>
-          <p className="f3 w-60 lh-copy mt0 mb4 mb5-ns">
-            You miss 100% of the shots you don’t take.
-          </p>
-          <form>
-            <fieldset className="bn pa0 checklist">
-              {this.createCheckItems()}
-            </fieldset>
-          </form>
+        {this.createCheckItems()}
+        <div className="grid-container">
+          <div className="pt5 bg-black">
+            <h1 className="f-headline b lh-solid mt0 tr white">40</h1>
+          </div>
+          <div className="pt5 pb5">
+            <h1 className="f-headline b lh-solid mt0 mb3 black">Forty</h1>
+          </div>
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 
