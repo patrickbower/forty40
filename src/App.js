@@ -82,7 +82,7 @@ class App extends Component {
             <h1 className="f-headline b lh-solid mt0 tr white">40</h1>
           </div>
           <div className="pt5 pb5">
-            <h1 className="f-headline b lh-solid mt0 mb3 black">Print a book</h1>
+            <h1 className="f-headline b lh-solid mt0 mb3 black">Print book</h1>
           </div>
         </div>
       </React.Fragment>
